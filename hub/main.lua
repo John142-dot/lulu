@@ -1,11 +1,3 @@
-if not getgenv().Activate or not getgenv().Activate.simplescripts then
-    print("Activate.simplescripts is not activated. Kicking player.")
-    game.Players.LocalPlayer:Kick("Activate.simplescripts is not activated.")
-    return
-else
-    print("Activate.simplescripts is activated!")
-end
-
 repeat
     wait()
 until game:IsLoaded()
@@ -174,8 +166,6 @@ Tab:AddToggle({
             UserInputService.JumpRequest:Connect(function()
                 humanoid:ChangeState("Jumping")
             end)
-        else
-            UserInputService.JumpRequest:Disconnect()
         end
     end    
 })
@@ -183,7 +173,7 @@ Tab:AddToggle({
 Tab:AddButton({
     Name = "Un Infinite Jump",
     Callback = function()
-        UserInputService = game:GetService("UserInputService")
+        local UserInputService = game:GetService("UserInputService")
         UserInputService.JumpRequest:Disconnect()
     end    
 })
@@ -236,12 +226,128 @@ Tab:AddButton({
     end    
 })
 
-CreditsTab:AddLabel("Renivy - Creator and Scripter")
-CreditsTab:AddLabel("Zonkey9070 - Scripter and URL for Modded Orion")
-
-OrionLib:MakeNotification({
-    Name = "Lulu Hub:",
-    Content = "Lulu hub has loaded.",
-    Image = "rbxassetid://4483345998",
-    Time = 5
+-- Teleportation Tool
+Tab:AddButton({
+    Name = "Teleportation Tool",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/edLCsuos/raw"))()
+    end    
 })
+
+-- Executor
+Tab:AddButton({
+    Name = "Executor",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/John142-dot/nameless-admin-v3/main/OMGEXECUYORV3"))()
+    end    
+})
+
+-- Crosshairs
+Tab:AddButton({
+    Name = "Crosshairs",
+    Callback = function()
+        local d = Drawing.new("Circle")
+        d.Color, d.Radius, d.Filled, d.Visible = Color3.new(1, 1, 1), 3, true, false
+        game:GetService("RunService").RenderStepped:Connect(function()
+            d.Position = workspace.CurrentCamera.ViewportSize / 2
+            d.Visible = true
+        end)
+
+        local d2 = Drawing.new("Circle")
+        d2.Radius = 10
+        d2.Filled = true
+        d2.Visible = true
+
+        local timeElapsed = 0
+        local hueSpeed = 0.5
+
+        game:GetService("RunService").RenderStepped:Connect(function(dt)
+            timeElapsed = timeElapsed + dt
+            local hue = (timeElapsed * hueSpeed) % 1
+            d2.Color = Color3.fromHSV(hue, 1, 1)
+            d2.Position = workspace.CurrentCamera.ViewportSize / 2
+        end)
+    end    
+})
+
+-- AntiSit
+local function antiSit()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.Sit = false
+end
+
+local function unAntiSit()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.Sit = false
+end
+
+-- AntiFling
+local function antiFling()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.PlatformStand = true
+end
+
+local function unAntiFling()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.PlatformStand = false
+end
+
+-- Sit Functionality
+Tab:AddButton({
+    Name = "Sit",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.Sit = true
+    end    
+})
+
+Tab:AddButton({
+    Name = "Un Sit",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.Sit = false
+    end    
+})
+
+Tab:AddButton({
+    Name = "AntiSit",
+    Callback = antiSit
+})
+
+Tab:AddButton({
+    Name = "Un AntiSit",
+    Callback = unAntiSit
+})
+
+Tab:AddButton({
+    Name = "AntiFling",
+    Callback = antiFling
+})
+
+Tab:AddButton({
+    Name = "Un AntiFling",
+    Callback = unAntiFling
+})
+
+-- Credits Section
+CreditsTab:AddSection({
+    Name = "Credits"
+})
+
+CreditsTab:AddLabel("L>U>L>U HUB Scripts")
+CreditsTab:AddLabel("Developed by [RenivyRBLX & Zonkey9070 on yt]")
+CreditsTab:AddLabel("Enjoy the scripts!")
+
+OrionLib:Init()
