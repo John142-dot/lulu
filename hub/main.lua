@@ -5,7 +5,7 @@ until game:IsLoaded()
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/John142-dot/orionlib/refs/heads/main/mobileshlex.lua'))()
 
 OrionLib:MakeNotification({
-    Name = "Lulu Hub:",
+    Name = "Thanks for Completing it!!",
     Content = "Setup completed",
     Image = "rbxassetid://4483345998",
     Time = 0.3
@@ -226,7 +226,6 @@ Tab:AddButton({
     end    
 })
 
--- Teleportation Tool
 Tab:AddButton({
     Name = "Teleportation Tool",
     Callback = function()
@@ -234,7 +233,6 @@ Tab:AddButton({
     end    
 })
 
--- Executor
 Tab:AddButton({
     Name = "Executor",
     Callback = function()
@@ -242,9 +240,8 @@ Tab:AddButton({
     end    
 })
 
--- Crosshairs
 Tab:AddButton({
-    Name = "Crosshairs",
+    Name = "Crosshair 1",
     Callback = function()
         local d = Drawing.new("Circle")
         d.Color, d.Radius, d.Filled, d.Visible = Color3.new(1, 1, 1), 3, true, false
@@ -252,7 +249,12 @@ Tab:AddButton({
             d.Position = workspace.CurrentCamera.ViewportSize / 2
             d.Visible = true
         end)
+    end    
+})
 
+Tab:AddButton({
+    Name = "Crosshair 2",
+    Callback = function()
         local d2 = Drawing.new("Circle")
         d2.Radius = 10
         d2.Filled = true
@@ -270,7 +272,6 @@ Tab:AddButton({
     end    
 })
 
--- AntiSit
 local function antiSit()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -285,7 +286,6 @@ local function unAntiSit()
     humanoid.Sit = false
 end
 
--- AntiFling
 local function antiFling()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -300,7 +300,6 @@ local function unAntiFling()
     humanoid.PlatformStand = false
 end
 
--- Sit Functionality
 Tab:AddButton({
     Name = "Sit",
     Callback = function()
@@ -314,34 +313,38 @@ Tab:AddButton({
 Tab:AddButton({
     Name = "Un Sit",
     Callback = function()
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoid = character:WaitForChild("Humanoid")
-        humanoid.Sit = false
+        unAntiSit()
     end    
 })
 
 Tab:AddButton({
-    Name = "AntiSit",
-    Callback = antiSit
+    Name = "Anti Sit",
+    Callback = function()
+        antiSit()
+    end    
 })
 
 Tab:AddButton({
-    Name = "Un AntiSit",
-    Callback = unAntiSit
+    Name = "Un Anti Sit",
+    Callback = function()
+        unAntiSit()
+    end    
 })
 
 Tab:AddButton({
-    Name = "AntiFling",
-    Callback = antiFling
+    Name = "Anti Fling",
+    Callback = function()
+        antiFling()
+    end    
 })
 
 Tab:AddButton({
-    Name = "Un AntiFling",
-    Callback = unAntiFling
+    Name = "Un Anti Fling",
+    Callback = function()
+        unAntiFling()
+    end    
 })
 
--- Credits Section
 CreditsTab:AddSection({
     Name = "Credits"
 })
@@ -349,5 +352,6 @@ CreditsTab:AddSection({
 CreditsTab:AddLabel("L>U>L>U HUB Scripts")
 CreditsTab:AddLabel("Developed by [RenivyRBLX & Zonkey9070 on yt]")
 CreditsTab:AddLabel("Enjoy the scripts!")
+CreditsTab:AddLabel("Contact on discord: kylo0912")
 
 OrionLib:Init()
