@@ -5,7 +5,7 @@ until game:IsLoaded()
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/John142-dot/orionlib/refs/heads/main/mobileshlex.lua'))()
 
 OrionLib:MakeNotification({
-    Name = "Thanks for Completing it!!",
+    Name = "Lulu Hub:",
     Content = "Setup completed",
     Image = "rbxassetid://4483345998",
     Time = 0.3
