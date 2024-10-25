@@ -189,24 +189,42 @@ Tab:AddButton({
     end    
 })
 
-Tab:AddButton({
-    Name = "Crosshair 2",
-    Callback = function()
-        local d2 = Drawing.new("Circle")
-        d2.Radius = 10
-        d2.Filled = true
-        d2.Visible = true
+local crosshairVisible = false
+local d2 = Drawing.new("Circle")
+d2.Radius = 10
+d2.Filled = true
+d2.Visible = false
 
-        local timeElapsed = 0
-        local hueSpeed = 0.5
+local timeElapsed = 0
+local hueSpeed = 0.5
+local renderConnection
 
-        game:GetService("RunService").RenderStepped:Connect(function(dt)
+local function toggleCrosshair()
+    crosshairVisible = not crosshairVisible
+    d2.Visible = crosshairVisible
+
+    if crosshairVisible then
+        timeElapsed = 0
+
+        -- Start rendering
+        renderConnection = game:GetService("RunService").RenderStepped:Connect(function(dt)
             timeElapsed = timeElapsed + dt
             local hue = (timeElapsed * hueSpeed) % 1
             d2.Color = Color3.fromHSV(hue, 1, 1)
             d2.Position = workspace.CurrentCamera.ViewportSize / 2
         end)
-    end    
+    else
+        -- Stop rendering
+        if renderConnection then
+            renderConnection:Disconnect()
+            renderConnection = nil
+        end
+    end
+end
+
+Tab:AddButton({
+    Name = "Crosshair 2",
+    Callback = toggleCrosshair
 })
 
 local function antiSit()
