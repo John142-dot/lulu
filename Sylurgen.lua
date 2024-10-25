@@ -352,6 +352,6 @@ CreditsTab:AddSection({
 CreditsTab:AddLabel("L>U>L>U HUB Scripts")
 CreditsTab:AddLabel("Developed by [RenivyRBLX & Zonkey9070 on yt]")
 CreditsTab:AddLabel("Enjoy the scripts!")
-CreditsTab:AddLabel("Contact on discord: kylo0912")
+CreditsTab:AddLabel("Contact on discord: Zonkey: kylo0912 | Renivy: rvyocer_83171")
 
 OrionLib:Init()
